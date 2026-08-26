@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>智元产品手册</title>
+  <style>
+    :root{color-scheme:dark;--bg:#111827;--bar:#182334;--line:rgba(255,255,255,.1);--text:#f4f7fb;--muted:#a8b4c5}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#2a3442;color:var(--text);font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif}
+    header{position:sticky;top:0;z-index:5;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(24,35,52,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+    .title{display:flex;align-items:center;gap:10px;font-weight:700}.mark{display:grid;place-items:center;width:32px;height:32px;border-radius:8px;background:#f0f4f8;color:#111827;font-size:11px;font-weight:800}.meta{font-size:12px;color:var(--muted);font-weight:400;margin-left:6px}
+    .tools{display:flex;align-items:center;gap:8px}.tools button{height:34px;padding:0 11px;border:1px solid var(--line);border-radius:7px;background:rgba(255,255,255,.05);color:var(--text);cursor:pointer}.tools button:hover{background:rgba(125,211,252,.14);color:#7dd3fc}
+    main{width:min(100%,1100px);margin:0 auto;padding:26px 20px 60px}.page{margin:0 auto 22px;position:relative}.page img{display:block;width:100%;height:auto;background:#fff;box-shadow:0 8px 26px rgba(0,0,0,.25)}.page-num{position:absolute;right:10px;bottom:10px;padding:4px 7px;border-radius:4px;background:rgba(10,15,22,.7);font-size:11px;color:#dce5f0}
+    @media(max-width:600px){header{height:54px;padding:0 10px}.meta{display:none}.tools{gap:4px}.tools button{padding:0 8px;font-size:12px}main{padding:12px 6px 30px}.page{margin-bottom:10px}.page-num{right:6px;bottom:6px}}
+  </style>
+</head>
+<body>
+  <header><div class="title"><span class="mark">智元</span><span>智元产品手册 <span class="meta">44 页 · 在线阅读</span></span></div><div class="tools"><button id="topBtn" type="button">回到顶部</button><button id="fullscreenBtn" type="button">全屏</button></div></header>
+  <main>
+    <!-- Each page is a faithful raster render of the source PDF page. -->
+    <div id="pages"></div>
+  </main>
+  <script>
+    const pages=document.getElementById('pages');
+    for(let i=1;i<=44;i++){const n=String(i).padStart(2,'0');const section=document.createElement('section');section.className='page';section.id='page-'+i;section.innerHTML='<img loading="'+(i<3?'eager':'lazy')+'" src="images/page-'+n+'.jpg" alt="智元产品手册第 '+i+' 页"><span class="page-num">'+i+' / 44</span>';pages.appendChild(section)}
+    document.getElementById('topBtn').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    document.getElementById('fullscreenBtn').addEventListener('click',()=>{(document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()).catch(()=>{})});
+  </script>
+</body>
+</html>
